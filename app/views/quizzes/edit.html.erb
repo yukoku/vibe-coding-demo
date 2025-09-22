@@ -1,4 +1,6 @@
-<div>
-  <h1 class="font-bold text-4xl">Quizzes#edit</h1>
-  <p>Find me in app/views/quizzes/edit.html.erb</p>
-</div>
+<h1 class="text-2xl font-bold mb-4">Editing Quiz</h1>
+
+<%= render "form", quiz: @quiz %>
+
+<%= link_to "Show this quiz", @quiz, class: "text-blue-500 hover:underline mt-4 block" %>
+<%= link_to "Back to Quizzes", quizzes_path, class: "text-blue-500 hover:underline mt-2 block" %>
