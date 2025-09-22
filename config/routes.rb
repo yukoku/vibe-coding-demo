@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'answers', to: 'answers#create'
   resources :quizzes
   get "home/index"
   devise_for :users
