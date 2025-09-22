@@ -1,0 +1,38 @@
+<div class="nested-fields bg-gray-50 p-4 rounded-md shadow-sm mb-4" data-controller="nested-form">
+  <%= form.hidden_field :id %>
+  <%= form.hidden_field :_destroy %>
+
+  <div class="flex justify-end">
+    <%= link_to "Remove Question", "#", data: { action: "nested-form#remove_association" }, class: "text-red-500 hover:text-red-700 text-sm" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :body, "Question Body", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :body, rows: 3, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :explanation, "Explanation", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :explanation, rows: 3, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :position, "Position", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.number_field :position, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+  </div>
+
+  <h4 class="text-lg font-semibold mt-6 mb-3">Choices</h4>
+  <div id="choices_<%= form.object.id || 'new' %>">
+    <%= form.fields_for :choices do |choice_fields| %>
+      <%= render "choices/choice_fields", form: choice_fields %>
+    <% end %>
+    <div data-nested-form-target="add_item"></div>
+    <%= link_to "Add Choice", "#", data: { action: "nested-form#add_association" }, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-sm mt-2 inline-block" %>
+  </div>
+
+  <template data-nested-form-target="template">
+    <%= form.fields_for :choices, Choice.new, child_index: "NEW_RECORD" do |choice_fields| %>
+      <%= render "choices/choice_fields", form: choice_fields %>
+    <% end %>
+  </template>
+</div>

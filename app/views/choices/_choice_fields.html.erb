@@ -1,0 +1,15 @@
+<div class="nested-fields flex items-center space-x-2 mb-2">
+  <%= form.hidden_field :id %>
+  <%= form.hidden_field :_destroy %>
+
+  <div class="flex-grow">
+    <%= form.text_field :body, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "Choice text" %>
+  </div>
+
+  <div class="flex items-center">
+    <%= form.check_box :correct, class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %>
+    <%= form.label :correct, "Correct", class: "ml-2 block text-sm text-gray-900" %>
+  </div>
+
+  <%= link_to "Remove", "#", data: { action: "nested-form#remove_association" }, class: "text-red-500 hover:text-red-700 text-sm" %>
+</div>
