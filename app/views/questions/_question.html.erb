@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "question_#{question.id}" do %>
+  <div class="bg-white shadow-md rounded-lg p-6 mb-4" data-controller="choice">
+    <h2 class="text-xl font-semibold mb-4"><%= question.body %></h2>
+
+    <%= form_with url: answers_path, method: :post, data: { turbo: true } do |form| %>
+      <%= form.hidden_field :question_id, value: question.id %>
+      <div class="space-y-2">
+        <% question.choices.each do |choice| %>
+          <%= form.button choice.body, name: :choice_id, value: choice.id, type: :submit, data: { action: "click->choice#select", choice_target: "choice" }, class: "block w-full text-left py-3 px-4 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors duration-200 ease-in-out cursor-pointer" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
