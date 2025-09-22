@@ -45,6 +45,12 @@ class QuizzesController < ApplicationController
   end
 
   def quiz_params
-    params.require(:quiz).permit(:title, :description, :public)
+    params.require(:quiz).permit(
+      :title, :description, :public,
+      questions_attributes: [
+        :id, :body, :explanation, :position, :_destroy,
+        choices_attributes: [:id, :body, :correct, :_destroy]
+      ]
+    )
   end
 end
